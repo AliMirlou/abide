@@ -99,7 +99,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
     for pheno_row in pheno_list[1:]:
 
         # Comma separate the row
-        cs_row = pheno_row.split(',')
+        cs_row = pheno_row.decode('utf8').split(',')
 
         try:
             # See if it was preprocessed
