@@ -76,7 +76,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
         os.makedirs(out_dir)
 
     # Load the phenotype file from S3
-    s3_pheno_file = urllib.urlopen(s3_pheno_path)
+    s3_pheno_file = urllib.request.urlopen(s3_pheno_path)
     pheno_list = s3_pheno_file.readlines()
 
     # Get header indices
