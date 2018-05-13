@@ -51,7 +51,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
 
     # Import packages
     import os
-    import urllib
+    import urllib.request
 
     # Init variables
     mean_fd_thresh = 0.2
