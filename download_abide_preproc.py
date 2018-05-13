@@ -80,7 +80,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
     pheno_list = s3_pheno_file.readlines()
 
     # Get header indices
-    header = pheno_list[0]..decode('utf8').split(',')
+    header = pheno_list[0].decode('utf8').split(',')
     try:
         site_idx = header.index('SITE_ID')
         file_idx = header.index('FILE_ID')
