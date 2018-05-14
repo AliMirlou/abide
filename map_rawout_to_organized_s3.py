@@ -62,7 +62,7 @@ def main():
 
     # Iterate through strategies
     for strat, filts in strat_dict.items():
-        print 'building %s...' % strat
+        print('building %s...' % strat)
         filt = filts[0]
         g_sig = filts[1]
         strat_prefix = os.path.join(bucket_prefix, filt, example_subid)
@@ -84,7 +84,7 @@ def main():
                 out_dict[strat][deriv] = [k for k in keys_list if '.nii.gz' in k or '.1D' in k][0]
             else:
                 err_dict[strat][deriv] = keys_list
-                print 'error in number of files!'
+                print('error in number of files!')
 
     # Go through dictionary and build paths
     mapping_dict = {}
@@ -92,7 +92,7 @@ def main():
     # For each subject
     for sub in sub_list:
         subid = sub.split('_')[-1] + '_session_1'
-        print 'populating %s...%d' % (subid, s)
+        print('populating %s...%d' % (subid, s))
         # For each strategy
         for strat, deriv_dict in out_dict.items():
             strat_prefix = os.path.join(bucket_prefix, strat)
@@ -112,7 +112,7 @@ def main():
                 mapping_dict[src_path] = dst_path
                 d += 1
             if d != 20:
-                print d
+                print(d)
                 raw_input('not enough dervivs')
         s += 1
 
