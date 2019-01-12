@@ -52,6 +52,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
     # Import packages
     import os
     import urllib.request
+    import shutil
 
     # Init variables
     mean_fd_thresh = 0.2
@@ -149,7 +150,8 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
         try:
             if not os.path.exists(download_file):
                 print('Retrieving: %s' % download_file)
-                urllib.request.urlretrieve(s3_path, download_file)
+                with urllib.request.urlopen(s3_path, timeout=1000) as response, open(download_file, 'wb') as out_file:
+                    shutil.copyfileobj(response, out_file)
                 print('%.3f%% percent complete' % \
                       (100*(float(path_idx+1)/total_num_files)))
             else:
