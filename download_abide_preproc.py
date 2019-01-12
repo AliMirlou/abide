@@ -155,6 +155,7 @@ def collect_and_download(derivative, pipeline, strategy, out_dir,
             else:
                 print('File %s already exists, skipping...' % download_file)
         except Exception as exc:
+            os.remove(download_file)
             print('There was a problem downloading %s.\n'\
                   'Check input arguments and try again.' % s3_path)
 
