@@ -13,7 +13,7 @@ def main():
     This function runs the main routine
     '''
     # Import packages
-    from CPAC.AWS import fetch_creds
+    from indi_aws import fetch_creds
     import os
     import yaml
 
