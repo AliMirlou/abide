@@ -87,10 +87,13 @@ def download_with_resume(url, file_path=None, hash=None, timeout=10, block_size=
 		return False
 
 
-def download_all(urls, directory, hashes=None, timeout=10, block_size=1000 * 1000):
+def download_all(urls, file_paths, hashes=None, timeout=10, block_size=1000 * 1000):
 	length = len(urls)
+	if hashes is None:
+		hashes = (None for _ in range(length))
 	with ThreadPool() as pool:
-		return all(pool.starmap(download_with_resume, zip(urls, directory, hashes, [timeout] * length, [block_size] * length)))
+		return all(pool.starmap(download_with_resume, zip(urls, file_paths, hashes, (timeout for _ in range(length)),
+		                                                  (block_size for _ in range(length)))))
 
 
 def console_logging(level=logging.DEBUG, format="%(message)s"):
